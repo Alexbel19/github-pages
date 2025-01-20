@@ -1,75 +1,87 @@
-<header>
+Задача 1: “НЕТ тавтологии” 
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+Условие: Напишите программу, которая поможет Грегори понять, сколько раз в тексте он использовал одно и то же слово и все использованыые слова по одному разу. 
 
-# GitHub Pages
+Формат ввода:
+Строка текста (слова разделены пробелами).
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+Формат вывода:
+Для каждого уникального слова в тексте вывести строку вида: “слово: количество” и все использованыые слова по одному разу.
+Порядок вывода слов не важен.
 
-</header>
+Тест 1:
+Ввод: apple banana apple orange banana apple
 
-<!--
-  <<< Author notes: Course start >>>
-  Include start button, a note about Actions minutes,
-  and tell the learner why they should take the course.
--->
+Вывод:
+apple: 3
+banana: 2
+orange: 1
+apple banana orange
 
-## Welcome
+Тест 2:
+Ввод: the quick brown fox jumps over the lazy dog the
 
-With GitHub Pages, you can host project blogs, documentation, resumes, portfolios, or any other static content you'd like. Your GitHub repository can easily become its own website. In this course, we'll show you how to set up your own site or blog using GitHub Pages.
+Вывод:
+the: 3
+quick: 1
+brown: 1
+fox: 1
+jumps: 1
+over: 1
+lazy: 1
+dog: 1
+brown dog fox jumps lazy over quick the
 
-- **Who is this for**: Beginners, students, project maintainers, small businesses.
-- **What you'll learn**: How to build a GitHub Pages site.
-- **What you'll build**: We'll build a simple GitHub Pages site with a blog. We'll use [Jekyll](https://jekyllrb.com), a static site generator.
-- **Prerequisites**: If you need to learn about branches, commits, and pull requests, take [Introduction to GitHub](https://github.com/skills/introduction-to-github) first.
-- **How long**: This course takes less than one hour to complete.
+Решение:
 
-In this course, you will:
+def process_text(text):
+    words = text.lower().split()
+    word_counts = {}
+    for word in words:
+        if word in word_counts:
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
 
-1. Enable GitHub Pages
-2. Configure your site
-3. Customize your home page
-4. Create a blog post
-5. Merge your pull request
+    for word, count in word_counts.items():
+        print(f"{word}: {count}")
 
-### How to start this course
+    unique_words = sorted(list(set(words)))
+    print(*unique_words)
 
-<!-- For start course, run in JavaScript:
-'https://github.com/new?' + new URLSearchParams({
-  template_owner: 'skills',
-  template_name: 'github-pages',
-  owner: '@me',
-  name: 'skills-github-pages',
-  description: 'My clone repository',
-  visibility: 'public',
-}).toString()
--->
 
-[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=skills&template_name=github-pages&owner=%40me&name=skills-github-pages&description=My+clone+repository&visibility=public)
+Задача 2: “Подготовка к игре” 
 
-1. Right-click **Start course** and open the link in a new tab.
-2. In the new tab, most of the prompts will automatically fill in for you.
-   - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
-   - Scroll down and click the **Create repository** button at the bottom of the form.
-3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
+Условие: Напишите программу, которая поможет Вите разложить бумажные купюры в "Монополии" по их номиналу. Витя - перфекционист, поэтому номинал купюр нужно вывести по возрастанию.
 
-<footer>
+Формат ввода:
+Две строки, каждая содержит числа, разделенные пробелами.
 
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
+Формат вывода:
+Строка, содержащая общие числа, отсортированные по возрастанию и разделенные пробелами.
 
----
+Тест 1:
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+Ввод:
+1 2 3 4 5
+3 5 6 7 8
 
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+Вывод:
+3 5
 
-</footer>
+Тест 2:
+
+Ввод:
+10 20 30 40 50
+1 2 30 4 10
+
+Вывод:
+10 30
+
+Решение:
+
+def find_common_numbers(str1, str2):
+    set1 = set(map(int, str1.split()))
+    set2 = set(map(int, str2.split()))
+    common_numbers = sorted(list(set1.intersection(set2)))
+    print(*common_numbers)
